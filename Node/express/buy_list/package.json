@@ -1,0 +1,15 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "Express exercises",
+  "main": "buy_list.js",
+  "scripts": {
+    "test": "nodemon buy_list.js --watch"
+  },
+  "author": "Constantino Edes",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}

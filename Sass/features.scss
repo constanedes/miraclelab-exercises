@@ -1,0 +1,90 @@
+//* --- Variables --- *
+$cool-green: #47B8AF;
+$nice-light-blue: #00BCD4;
+
+$global-variable: 'foo';
+
+.content {
+    $local-variable: 'bar'; // Variables have a scope too
+}
+
+
+//* --- Mixins --- *
+@mixin border-radius-50 {
+    border-radius: 50%;
+}
+
+@mixin circle($width, $height , $color: red) {
+    width: $width;
+    height: $height;
+    background: $color;
+    @include border-radius-50;
+}
+
+.circle {
+    @include circle(200px, 100px, blue);
+}
+
+
+//* --- Extend --- *
+.message {
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: #333;
+
+    &-success {
+        @extend .message;
+        border-color: green;
+    }
+
+    &-error {
+        @extend .message;
+        border-color: red;
+    }
+}
+
+
+//* --- Nesting --- * 
+header {
+    #logo {
+        width: 300px;
+        height: 100px;
+        background: $cool-green;
+    }
+
+    nav {
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            display: inline-block;
+        }
+    }
+}
+
+
+//* --- Operators --- *
+$a: 5;
+$b: $a * 2;
+$var: true or false and false==true or (false and false); // true
+
+@if $b <=7 {
+    .box {
+        width: 50%;
+    }
+}
+
+@else if $b >7 and $var ==true {
+    .box {
+        width: 25%;
+    }
+}
+
+@else {
+    .box {
+        width: 100%;
+    }
+}

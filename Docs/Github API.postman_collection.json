@@ -1,0 +1,629 @@
+{
+	"info": {
+		"_postman_id": "2f1e084d-29a6-4ba9-8289-16e17540d976",
+		"name": "Github API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22628909"
+	},
+	"item": [
+		{
+			"name": "Octocat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/octocat",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"octocat"
+					]
+				},
+				"description": "Va a devolver un dibujo de la mascota de github junto a un mensaje random :)"
+			},
+			"response": []
+		},
+		{
+			"name": "Main URL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				},
+				"description": "URL principal en donde se deben hacer las consultas, devuelve algunos endpoints utiles"
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Health",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/zen",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"zen"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify User Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/{{username}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"{{username}}"
+					]
+				},
+				"description": "Devuelve informacion sobre un usuario en particular, **NO** necesita Auth."
+			},
+			"response": []
+		},
+		{
+			"name": "List User Gists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/:username/gists",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						":username",
+						"gists"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Github username"
+						}
+					]
+				},
+				"description": "Devuelvge una lista con informacion sobre los gists que posee el usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "List User Repos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/:username/repos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						":username",
+						"repos"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Github username"
+						}
+					]
+				},
+				"description": "Lista informacion con los repositorios del usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "List Repo Branches",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/repos/:username/:repo/branches",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						":username",
+						":repo",
+						"branches"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Github username"
+						},
+						{
+							"key": "repo",
+							"value": "{{repo}}",
+							"description": "Github repository name"
+						}
+					]
+				},
+				"description": "Devuelve informacion sobre las branch de un repositorio concreto que posee el usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "List Repo Issues",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/repos/:username/:repo/issues",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						":username",
+						":repo",
+						"issues"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Github username"
+						},
+						{
+							"key": "repo",
+							"value": "{{repo}}",
+							"description": "Github repository name"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Emojis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/emojis",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"emojis"
+					]
+				},
+				"description": "Devuelve una lista con todos los emojis que se pueden usar en Github"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Repository",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST Request Successfuly\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{repo}}\",\r\n    \"private\": true,\r\n    \"auto_init\": true,\r\n    \"gitignore_template\": \"Python\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/repos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"repos"
+					]
+				},
+				"description": "Crea un repositorio en la cuenta del usuario, requiere Auth."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Gist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Create Gist Test\",\r\n    \"public\": false,\r\n    \"files\": {\r\n        \"README.md\": {\r\n            \"content\": \"#### Hello World!\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/gists",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gists"
+					]
+				},
+				"description": "Crea un gist con el archivo, descripcion y contenido pasados en el body"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Issue",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST Request Successfuly\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Code Refactoring\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/repos/:username/:repo/issues",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						":username",
+						":repo",
+						"issues"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Github Username"
+						},
+						{
+							"key": "repo",
+							"value": "{{repo}}",
+							"description": "Name of the repository in which the issue will be created"
+						}
+					]
+				},
+				"description": "Crea un issue en el repositorio de el usuario autenticado, requiere Auth."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Repository",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/repos/:username/:repo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						":username",
+						":repo"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Github username"
+						},
+						{
+							"key": "repo",
+							"value": "MiracleApiTest",
+							"description": "Github repository name"
+						}
+					]
+				},
+				"description": "Borra un repositorio"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Gist",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/gists/:gist_id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gists",
+						":gist_id"
+					],
+					"variable": [
+						{
+							"key": "gist_id",
+							"value": "",
+							"description": "ID for delete the gist"
+						}
+					]
+				},
+				"description": "Borra un gist"
+			},
+			"response": []
+		},
+		{
+			"name": "Unlock Issue",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/repos/:username/:repo/issues/:issue_number/lock",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						":username",
+						":repo",
+						"issues",
+						":issue_number",
+						"lock"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Github username"
+						},
+						{
+							"key": "repo",
+							"value": "{{repo}}",
+							"description": "Github repository name"
+						},
+						{
+							"key": "issue_number",
+							"value": "1",
+							"description": "Number of the issue"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock Issue",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/repos/:username/:repo/issues/:issue_number/lock",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						":username",
+						":repo",
+						"issues",
+						":issue_number",
+						"lock"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Github username"
+						},
+						{
+							"key": "repo",
+							"value": "{{repo}}",
+							"description": "Github repository name"
+						},
+						{
+							"key": "issue_number",
+							"value": "1",
+							"description": "Number of the issue"
+						}
+					]
+				},
+				"description": "Bloquea la conversacion en un issue del repositorio pasado por parametro"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Issue",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"state\": \"closed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/repos/:username/:repo/issues/:issue_number",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						":username",
+						":repo",
+						"issues",
+						":issue_number"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Github username"
+						},
+						{
+							"key": "repo",
+							"value": "{{repo}}",
+							"description": "Github repository name"
+						},
+						{
+							"key": "issue_number",
+							"value": "1",
+							"description": "Number of the issue"
+						}
+					]
+				},
+				"description": "Actualiza un Issue, pero tambien sirve para cerrarlo si se pasa en el JSON del body`\"state\": \"closed\"`"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "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",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Test Passed\", function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+					"});",
+					"",
+					"",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://api.github.com"
+		},
+		{
+			"key": "username",
+			"value": "constanedes"
+		},
+		{
+			"key": "repo",
+			"value": "githubApiTest",
+			"type": "string"
+		}
+	]
+}

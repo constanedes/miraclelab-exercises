@@ -1,0 +1,18 @@
+@function horizontalTextAlign($position) {
+    @if $position == left {
+        @return left;
+    }
+    @else if $position == right {
+        @return right;
+    }
+    @else if $position == center {
+        @return center;
+    }
+    @else {
+        @error "Invalid position #{$position}";
+    }
+}
+
+.text {
+    text-align: horizontalTextAlign(left);
+}

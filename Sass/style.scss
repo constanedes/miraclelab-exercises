@@ -1,0 +1,120 @@
+/* Ejercicio 1
+Explique en que se diferencian el flujo de trabajo con CSS tradicional y con CSS preprocesado. 
+
+En el CSS tradicional, muchas veces se repiten las mismas lineas de codigo, lo que hace que el codigo sea repetitivo y dificil de interpretar.
+El CSS preprocesado resuelve este problema, agregando caracteristicas que vienen de lenguajes de programacion, como por ejemplo, variables, funciones, bucles, etc. Esto hace que el codigo sea mas corto, facil de interpretar y mantener. Este ultimo luego se transpila a CSS tradicional, para que el navegador pueda interpretarlo. */
+
+
+
+/* Ejercicio 1.2
+Explique por que las variables son utiles. 
+
+Las variables sirven para reutilizar codigo y almacenar en ellas alguna caracteristica que vamos a repetir varias veces en el CSS de nuestra pagina, por ejemplo, los colores, fuentes, tamanos, etc. 
+Estas mismas nos permiten modificar el valor de la variable en un solo lugar, y que se modifique en todos los lugares donde se haya utilizado. 
+*/
+
+
+
+/* Ejercicio 2
+Escriba un @mixin (como el mixin box-shadow del ejemplo). Algunos casos que podria probar
+son: un mixin que agrega un prefijo de proveedor, un mixin que agrega un margen fijo y relleno
+(padding), y un mixin que agrega propiedades de borde.
+Recuerde que los prefijos de proveedor son:
+Android: -webkit-
+Chrome: -webkit-
+Firefox: -moz-
+Internet Explorer: -ms-
+iOS: -webkit-
+Opera: -o-
+Safari: -webkit */
+
+@mixin provider($prefix, $property, $value) {
+    @if $prefix ==null {
+        #{$property}: $value;
+    }
+    #{$prefix}-#{$property}: $value;
+}
+@mixin margin-padding($margin, $padding...) {
+    margin: $margin;
+    padding: $padding;
+}
+@mixin border($width: 2px, $style: solid, $color: black) {
+    border: $width $style $color;
+}
+.box {
+    @include border(4px, dashed);
+    @include margin-padding(10px, 20px, 30px, 40px);
+}
+
+
+
+/* Ejericio 3
+Familiaricese con los siguientes con los comandos de Node-Sass:
+--watch
+--output-style expanded | compressed
+--version */
+
+
+
+/* Ejercicio 4
+1. Agregue partials (partials) y use la directiva @import
+2. Cambie el nombre de los archivos a _name.scss y anada sus configuraciones, luego asegurese de que style.scss contenga todas las directivas @import relevantes */
+@import 'partials/config';
+
+.my-container {
+    background-color: $color-primary;
+    font-family: $font-family;
+    font-size: $font-size;
+}
+
+/* Ejercicio 5
+Escriba una estructura de repeticion para crear nuevas clases, por ejemplo, utilicelo para crear y
+disenar una clase para cada dia de la semana: .monday, .tuesday, ... .sunday. Puede utilizar
+listas, mapas, etc. */
+
+$days-list: 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday';
+@mixin days($days-list) {
+    @each $day in $days-list {
+        .#{$day} {
+            background-color: $color-primary;
+            font-family: $font-family;
+            font-size: $font-size;
+            color: dayColor($day);
+        }
+    }
+}
+
+/* Ejercicio 6
+Escribe una @function que, dado un dia de la semana, devuelva un color (o lo que prefiera).
+Utilice el valor de retorno para disenar un atributo en las clases dia. (Sugerencia: debe llamar
+a la funcion dentro de la estructura de repeticion para cada iteracion).
+*/
+
+@function dayColor($day) {
+    @if $day == 'monday' {
+        @return #f00;
+    }
+    @else if $day == 'tuesday' {
+        @return #0f0;
+    }
+    @else if $day == 'wednesday' {
+        @return #00f;
+    }
+    @else if $day == 'thursday' {
+        @return #ff0;
+    }
+    @else if $day == 'friday' {
+        @return #f0f;
+    }
+    @else if $day == 'saturday' {
+        @return #0ff;
+    }
+    @else if $day == 'sunday' {
+        @return #000;
+    }
+    @else {
+        @return #fff;
+    }
+}
+
+@include days($days-list) 

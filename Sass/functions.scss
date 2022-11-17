@@ -1,0 +1,29 @@
+@function pxToRem($px) {
+    @return $px / 16px * 1rem;
+}
+
+@function remToPx($rem) {
+    @return $rem / 1rem * 16px;
+}
+
+@function checkColor($color) {
+    @if $color =='red' {
+        @return #f00;
+    }
+
+    @else if $color =='green' {
+        @return #0f0;
+    }
+
+    @else if $color =='blue' {
+        @return #00f;
+    }
+
+    @else {
+        @return #000;
+    }
+}
+
+.box {
+    color: checkColor('red');
+}
